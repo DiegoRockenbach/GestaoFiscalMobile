@@ -10,10 +10,10 @@
     <title>Página principal</title>
   </head>
   <body>
-    <a href="addGasto.html">
+    <a href="formAddGasto.php">
       <button >Adicionar Gasto</button>
     </a>
-    <a href="addLucro.html">
+    <a href="formAddLucro.php">
       <button >Adicionar Lucro</button>
     </a>
     <a href="checkRegistros.php">
