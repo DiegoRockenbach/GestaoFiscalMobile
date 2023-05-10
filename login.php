@@ -1,3 +1,9 @@
+<?php
+  if (file_exists("conta.txt")) {
+    unlink("conta.txt");
+  }
+?>
+
 <html>
   <head>
     <meta charset="UTF-8">

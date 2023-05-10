@@ -6,7 +6,7 @@
     echo "Valor inserido!";
   ?>
   <br> <br>
-  <a href="index.html">
+  <a href="index.php">
     <button >Voltar</button>
   </a>
 </html>

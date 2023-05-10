@@ -6,11 +6,15 @@
   <body>
     <div>
       <?php
-        
+        <table>
+          <td>
+
+          </td>
+        </table>
       ?>
     </div>
     <br> <br>
-    <a href="index.html">
+    <a href="index.php">
       <button >Voltar</button>
     </a>
   </body>

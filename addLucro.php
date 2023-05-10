@@ -2,12 +2,12 @@
   <?php
     $valorFORM = $_GET["valor"];
     $dataFORM = $_GET["data"];
-    $string = "R$ $valorFORM lucrados no dia $dataFORM <br>";
+    $string = "R$ $valorFORM lucrados no dia $dataFORM \n"; //o \n ou <br> não funciona se codifico pra json
     file_put_contents("banco.txt", json_encode($string),FILE_APPEND);
     echo "Valor inserido!";
   ?>
   <br> <br>
-  <a href="index.html">
+  <a href="index.php">
     <button >Voltar</button>
   </a>
 </html>

@@ -1,3 +1,9 @@
+<?php
+  session_start();
+  $_SESSION = json_decode(file_get_contents("conta.txt"), true);
+  if(isset($_SESSION['user']) and isset($_SESSION['senha'])) {
+?>
+
 <html>
   <head>
     <meta charset="UTF-8">
@@ -15,3 +21,12 @@
     </a>
   </body>
 </html>
+
+<?php
+  }
+  else {
+    header("location: login.php");
+    die;
+  }
+
+?>

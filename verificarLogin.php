@@ -1,10 +1,13 @@
 <?php
   $userFORM = $_GET["user"];
   $senhaFORM = $_GET["senha"];
-  var_dump($userFORM);
-  var_dump($senhaFORM);
-  if (($userFORM == "diegorock") and ($senhaFORM == "nataliaband")) {
-    // redireciona para index.html
+  $verificaLogin = json_decode(file_get_contents("contaCERTA.txt"), true);
+  if (($userFORM == $verificaLogin["user"]) and ($senhaFORM == $verificaLogin["senha"])) {
+    $_SESSION['user'] = $userFORM;
+    $_SESSION['senha'] = $senhaFORM;
+    file_put_contents("conta.txt",json_encode($_SESSION));
+    header("location: index.php");
+    die;
   }
   else {
     echo "você não sou eu!";
