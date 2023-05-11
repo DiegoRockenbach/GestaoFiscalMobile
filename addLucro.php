@@ -16,11 +16,13 @@
       array_push($banco, $valdat);
       file_put_contents("banco.json", json_encode($banco));
     }
-    echo '<br><br><br>';
     echo "Valor inserido!";
   ?>
   <br> <br>
   <a href="index.php">
-    <button >Voltar</button>
+    <button>Voltar</button>
+  </a>
+  <a href="formAddLucro.php">
+    <button>Inserir mais um registro</button>
   </a>
 </html>
