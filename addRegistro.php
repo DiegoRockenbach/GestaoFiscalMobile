@@ -1,7 +1,7 @@
 <html>
   <?php
-    $valorFORM = $_GET["valor"];
-    $dataFORM = $_GET["data"];
+    $valorFORM = $_POST["valor"];
+    $dataFORM = $_POST["data"];
     $valdat = array(
       "valor" => $valorFORM,
       "data" => $dataFORM,
@@ -22,7 +22,7 @@
   <a href="index.php">
     <button>Voltar</button>
   </a>
-  <a href="formAddLucro.php">
+  <a href="formAddRegistro.php">
     <button>Inserir mais um registro</button>
   </a>
 </html>
