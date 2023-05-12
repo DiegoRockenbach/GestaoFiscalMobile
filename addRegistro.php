@@ -1,3 +1,8 @@
+<?php
+  session_start();
+  if(isset($_SESSION['user']) and isset($_SESSION['senha'])) {
+?>
+
 <html>
   <?php
     $valorFORM = $_POST["valor"];
@@ -26,3 +31,11 @@
     <button>Inserir mais um registro</button>
   </a>
 </html>
+
+<?php
+  }
+  else {
+    header("location: login.php");
+    die;
+  }
+?>
