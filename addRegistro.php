@@ -35,7 +35,7 @@
 <?php
   }
   else {
-    header("location: login.php");
+    header("location: formLogin.php");
     die;
   }
 ?>

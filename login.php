@@ -1,15 +1,16 @@
-<html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Login</title>
-  </head>
-  <body>
-    <form action="verificarLogin.php" method="post">
-      <label for="user">Usuário: </label>
-      <input type="text" id="user" name="user" required> <br> <br>
-      <label for="senha">Senha: </label>
-      <input type="password" id="senha" name="senha" required> <br> <br> <br>
-      <input type="submit" value="submit">
-    </form>
-  </body>
-</html>
+<?php
+  $userFORM = $_POST["user"];
+  $senhaFORM = $_POST["senha"];
+  $verificaLogin = json_decode(file_get_contents("contaCERTA.txt"), true);
+  if (($userFORM == $verificaLogin["user"]) and ($senhaFORM == $verificaLogin["senha"])) {
+    session_start();
+    $_SESSION['user'] = $userFORM;
+    $_SESSION['senha'] = $senhaFORM;
+    header("location: index.php");
+    die;
+  }
+  else {
+    echo "você não sou eu!";
+    die;
+  }
+?>

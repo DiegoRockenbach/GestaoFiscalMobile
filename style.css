@@ -6,39 +6,18 @@ html, body {
     background-color: rgb(15, 15, 15);
 }
 
-.tablelist td, th {
-    border: 2px solid rgb(204, 116, 255);
-}
-
-.tableRegistros {
-    text-align: center;
-    margin-top: 10%;
-    margin-left: 50%;
-}
-
-.formMes {
-    color: white;
-    font-size: 20px;
-    font-weight: bold;
-    text-align: center;
-    margin-top: 5%;
-}
-
-.a_Index{
-    text-decoration: none;
-    align-items: center;
-    justify-content: center;
-    margin-top: 10%;
-    margin-bottom: 5%;
-}
-
 .btn_Index {
+    display: block;
+    font-size: 1em;
+    text-decoration: none;
     border: 3px solid rgb(132, 27, 230);
-    border-radius: 10%;
     color: rgb(132, 27, 230);
     background-color: rgb(15, 15, 15);
-    width: 200px;
-    height: 100px;
+    width: 15em;
+    padding-top: 3em;
+    padding-bottom: 3em;
+    margin: auto;
+    margin-top: 5em;
     transition: all 0.3s ease-in-out;
 }
 
@@ -48,15 +27,78 @@ html, body {
     color: white;
 }
 
-.btn_Voltar {
-    margin-top: 4%;
+@media (max-width: 750px) {
+    .box_Index {
+        padding-top: 3em;
+        margin-top: 2em;
+    }
+}
+
+@media (max-width: 650px) {
+    .box_Index {
+        padding-top: 1em;
+        margin-top: 1em;
+    }
+}
+
+.table-danger {
+    --bs-table-color: white;
+    --bs-table-bg: rgb(185, 30, 30);
+    --bs-table-hover-bg: rgb(190, 50, 50);
+    --bs-table-hover-color: white;
+}
+
+.table-success {
+    --bs-table-color: white;
+    --bs-table-bg: rgb(35, 182, 66);
+    --bs-table-hover-bg: rgb(51, 182, 79);
+    --bs-table-hover-color: white;
+}
+
+.tableRegistros {
     text-align: center;
-    margin-left: 47.5%;
-    height: 50px;
-    width: 100px;
+    margin-top: 2em;
+    background-color: #212529;
+    color: white;
+    border-color: #373b3e;
+    --bs-table-hover-color: white;
+}
+
+.tablelist td, th {
+    border: 1px solid rgb(71, 71, 71);
+}
+
+.formMes {
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 1em;
+}
+
+.formMes label {
+    margin-bottom: 2em;
+}
+
+.formMes input {
+    color: white;
+    background-color: #212529;
+}
+
+@media (max-width: 700px) {
+    .formMes label {
+        margin-bottom: 0.5em;
+    }
+}
+
+.btn_Voltar {
+    display: block;
+    text-align: center;
+    width: 10em;
+    margin: auto;
+    margin-top: 4em;
     font-size: 20px;
     border: 3px solid rgb(132, 27, 230);
-    border-radius: 10%;
     color: rgb(132, 27, 230);
     background-color: rgb(15, 15, 15);
     transition: all 0.3s ease-in-out;
@@ -68,11 +110,60 @@ html, body {
     color: white;
 }
 
+@media (max-width: 700px) {
+    .btn_Voltar {
+        margin-top: 5%;
+    }
+}
+
 .nenhum_Registro {
     text-align: center;
     background: #ffecac;
-    font-size: 30px;
+    font-size: 25px;
     font-weight: bold;
-    margin-top: 5%;
-    margin-left: 50%;
+    margin-top: 1em;
+}
+
+@media (max-width: 600px) {
+    .nenhum_Registro {
+        font-size: 20px;
+    }
+}
+
+.formValdat {
+    display: block;
+    margin: auto;
+    width: 10em;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+}
+
+.formValdat label {
+    margin-bottom: 0.5em;
+    margin-top: 0.5em;
+}
+
+.formValdat input {
+    color: white;
+    background-color: #212529;
+}
+
+.btn_Submit {
+    display: block;
+    text-align: center;
+    width: 10em;
+    margin: auto;
+    margin-top: 2em;
+    font-size: 20px;
+    border: 3px solid rgb(132, 27, 230);
+    color: rgb(132, 27, 230);
+    background-color: rgb(15, 15, 15);
+    transition: all 0.3s ease-in-out;
+}
+
+.btn_Submit:hover {
+    background-color: rgb(132, 27, 230);
+    transform:scale(1.2);
+    color: white;
 }
