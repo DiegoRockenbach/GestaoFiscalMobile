@@ -91,31 +91,6 @@ html, body {
     }
 }
 
-.btn_Voltar {
-    display: block;
-    text-align: center;
-    width: 10em;
-    margin: auto;
-    margin-top: 4em;
-    font-size: 20px;
-    border: 3px solid rgb(132, 27, 230);
-    color: rgb(132, 27, 230);
-    background-color: rgb(15, 15, 15);
-    transition: all 0.3s ease-in-out;
-}
-
-.btn_Voltar:hover {
-    background-color: rgb(132, 27, 230);
-    transform:scale(1.2);
-    color: white;
-}
-
-@media (max-width: 700px) {
-    .btn_Voltar {
-        margin-top: 5%;
-    }
-}
-
 .nenhum_Registro {
     text-align: center;
     background: #ffecac;
@@ -133,7 +108,7 @@ html, body {
 .formValdat {
     display: block;
     margin: auto;
-    width: 10em;
+    width: 20em;
     text-align: center;
     color: white;
     font-weight: bold;
@@ -141,7 +116,7 @@ html, body {
 
 .formValdat label {
     margin-bottom: 0.5em;
-    margin-top: 0.5em;
+    margin-top: 1em;
 }
 
 .formValdat input {
@@ -149,12 +124,13 @@ html, body {
     background-color: #212529;
 }
 
-.btn_Submit {
+.formValdat .btn_Submit {
     display: block;
     text-align: center;
     width: 10em;
     margin: auto;
-    margin-top: 2em;
+    margin-top: 4em;
+    margin-bottom: -2em;
     font-size: 20px;
     border: 3px solid rgb(132, 27, 230);
     color: rgb(132, 27, 230);
@@ -166,4 +142,119 @@ html, body {
     background-color: rgb(132, 27, 230);
     transform:scale(1.2);
     color: white;
+}
+
+.valor_Inserido {
+    display: block;
+    margin: auto;
+    text-align: center;
+    font-size: 25px;
+    width: 20em;
+    margin-top: 8em;
+    font-weight: bold;
+}
+
+.btn_InserirMaisUm {
+    display: block;
+    text-align: center;
+    width: 15em;
+    margin: auto;
+    margin-top: 6em;
+    font-size: 20px;
+    border: 3px solid rgb(132, 27, 230);
+    color: rgb(132, 27, 230);
+    background-color: rgb(15, 15, 15);
+    transition: all 0.3s ease-in-out;
+}
+
+.btn_InserirMaisUm:hover {
+    background-color: rgb(132, 27, 230);
+    transform:scale(1.2);
+    color: white;
+}
+
+@media (max-width: 700px) {
+    .btn_InserirMaisUm {
+        margin-top: 3em;
+    }
+}
+
+.btn_Voltar {
+    display: block;
+    text-align: center;
+    width: 10em;
+    margin: auto;
+    margin-top: 6em;
+    font-size: 20px;
+    border: 3px solid rgb(132, 27, 230);
+    color: rgb(132, 27, 230);
+    background-color: rgb(15, 15, 15);
+    transition: all 0.3s ease-in-out;
+}
+
+.btn_Voltar:hover {
+    background-color: rgb(132, 27, 230);
+    transform:scale(1.2);
+    color: white;
+}
+
+@media (max-width: 700px) {
+    .btn_Voltar {
+        margin-top: 3em;
+    }
+}
+
+.formLogin {
+    display: block;
+    margin: auto;
+    width: 20em;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+}
+
+.formLogin input {
+    border: 0.1em solid whitesmoke;
+    color: white;
+    background-color: #212529;
+}
+
+.formLogin label {
+    padding-top: 2em;
+    width: 5em;
+}
+
+.formLogin .btn_Submit {
+    display: block;
+    text-align: center;
+    width: 10em;
+    margin: auto;
+    margin-top: 3em;
+    font-size: 20px;
+    border: 3px solid rgb(132, 27, 230);
+    color: rgb(132, 27, 230);
+    background-color: rgb(15, 15, 15);
+    transition: all 0.3s ease-in-out;
+}
+
+.box_Login {
+    padding-top: 12em;
+}
+
+.login_Falha {
+    display: block;
+    margin: auto;
+    text-align: center;
+    font-size: 25px;
+    width: 20em;
+    margin-top: 10em;
+    font-weight: bold;
+    background-color: #f89ca4;
+}
+
+@media (max-width: 650px) {
+    .login_Falha {
+        margin-top: 6em;
+        margin-bottom: 2.5em;
+    }
 }

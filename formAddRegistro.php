@@ -16,12 +16,12 @@
     <section>
   	  <container>
   	    <div class="row mx-auto">
-          <form class="formValdat" method="post">
-            <label for="valor">Valor: </label>
+          <form class="formValdat" action="addRegistro.php" method="post">
+            <label for="valor">Valor: </label> <br>
             <input type="number" id="valor" name="valor" step="any" required> <br>
-            <label for="data">Data: </label>
-            <input type="date" id="data" name="data" required> <br>
-            <input class="btn btn_Submit" type="submit" name="submit" value="submit">
+            <label for="data">Data: </label> <br>
+            <input type="date" id="data" name="data" required>
+            <input class="btn btn_Submit" type="submit" name="submit" value="Enviar">
           </form>
   	    </div>
   	  </container>
