@@ -19,7 +19,7 @@
 		      <form class='formMes' method="post">
       	  	<label for="mes">Qual mês deseja consultar?</label>
 			<br>
-      	  	<input type="month" id="mes" name="mes" onchange="form.submit()">
+      	  	<input type="month" id="mes" name="mes" placeholder="a" onchange="form.submit()">
     	    </form>
   	    </div>
   	  </container>
@@ -31,6 +31,7 @@
 				else {
 					$mesForm = $_POST["mes"];
 					$banco = json_decode(file_get_contents("banco.json"));
+					$somaValores = 0;
 					$countBanco = count($banco);
 					echo  "<div class='row mx-auto col-lg-10'>";
 					echo  "<table class='table tableRegistros table-hover'><thead>";
@@ -50,11 +51,12 @@
 							$count = 1;
 						}
 						if (($row->data >= $mesFormInicio) and ($row->data < $mesFormFinal)){
-							$checkNenhumRegistro = 1;
+							$checkNenhumRegistro = 2;
 							$checkTable = 1;
 							$row->data = date_format($row->data,"d/m/Y");
-							$valorInt = intval($row->valor);
-							if ($valorInt < 0) {
+							$valorFloat = floatval($row->valor);
+							$somaValores = $somaValores + $valorFloat;
+							if ($valorFloat < 0) {
 								echo "<tr class='table-danger'>";
 								echo "<td>" . $row->valor . "</td>";
 								echo "<td>" . "$row->data" . "</td>";
@@ -74,6 +76,9 @@
 						}
 					}
 					echo  "</table>";
+					if ($checkNenhumRegistro <> 1) {
+						echo "<div class='alert soma_Mes'> A soma dos valores desse mês é de R$ " . $somaValores . "</div>";
+					}
 				}
     	?>
     </div>

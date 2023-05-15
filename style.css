@@ -91,6 +91,17 @@ html, body {
     }
 }
 
+.soma_Mes {
+    display: block;
+    margin: auto;
+    text-align: center;
+    font-size: 25px;
+    width: 30em;
+    margin-top: 1em;
+    font-weight: bold;
+    color: white;
+}
+
 .nenhum_Registro {
     text-align: center;
     background: #ffecac;
@@ -154,6 +165,12 @@ html, body {
     font-weight: bold;
 }
 
+@media (max-width: 500px) {
+    .valor_Inserido {
+        width: 12em;
+    }
+}
+
 .btn_InserirMaisUm {
     display: block;
     text-align: center;
@@ -185,6 +202,7 @@ html, body {
     width: 10em;
     margin: auto;
     margin-top: 6em;
+    margin-bottom: 2em;
     font-size: 20px;
     border: 3px solid rgb(132, 27, 230);
     color: rgb(132, 27, 230);
