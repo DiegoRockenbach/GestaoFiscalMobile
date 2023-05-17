@@ -26,59 +26,68 @@
   	</section>
     <div class="row mx-auto">
     	<?php
-				if (!$_POST) {
+				if (file_exists("banco.json")) {
+					if (!$_POST) {
+					}
+					else {
+						$mesForm = $_POST["mes"];
+						$banco = json_decode(file_get_contents("banco.json"));
+						$somaValores = 0;
+						$checkNenhumRegistro = 0;
+						$countBanco = count($banco);
+						echo  "<div class='row mx-auto col-lg-10'>";
+						echo  "<table class='table tableRegistros table-hover'><thead>";
+						echo  "  <tr>";
+						echo  "    <th>Valor</th>";
+						echo  "    <th>Data</th>";
+						echo  "    <th></th>"; //<th> da lixeira
+						echo  "  </tr></thead>";
+						$mesFormInicio = date_create($mesForm,timezone_open("America/Sao_Paulo"));
+						$mesFormFinal = date_create($mesForm,timezone_open("America/Sao_Paulo"));
+						date_add($mesFormFinal, date_interval_create_from_date_string('1 month'));
+						foreach($banco as $row) {
+							$row->data = date_create($row->data, timezone_open("America/Sao_Paulo"));
+							if (isset($count)){
+								$count = $count + 1;
+							}
+							else{
+								$count = 1;
+							}
+							if (($row->data >= $mesFormInicio) and ($row->data < $mesFormFinal)){
+								$checkNenhumRegistro = 2;
+								$checkTable = 1;
+								$row->data = date_format($row->data,"d/m/Y");
+								$valorFloat = floatval($row->valor);
+								$somaValores = $somaValores + $valorFloat;
+								if ($valorFloat < 0) {
+									echo "<tr class='table-danger'>";
+									echo "<td>" . $row->valor . "</td>";
+									echo "<td>" . $row->data . "</td>";
+									echo "<td><a href='deleteRegistro.php?id=$row->id'><img src='lixeira.png'></a></td>";
+									echo "</tr>";
+								}
+								else {
+									echo "<tr class='table-success'>";
+									echo "<td>" . $row->valor . "</td>";
+									echo "<td>" . $row->data . "</td>";
+									echo "<td><a href='deleteRegistro.php?id=$row->id'><img src='lixeira.png'></a></td>";
+									echo "</tr>";
+								}
+							}
+							else if (($count >= $countBanco) and ($checkNenhumRegistro == 0)){
+								echo "<div class='nenhum_Registro alert alert-warning container-fluid'>Nenhum registro para o mês selecionado!</div>";
+								$checkNenhumRegistro = 1;
+								continue;
+							}
+						}
+						echo  "</table>";
+						if ($checkNenhumRegistro == 2) {
+							echo "<div class='alert soma_Mes'> A soma dos valores desse mês é de R$ " . $somaValores . "</div>";
+						}
+					}
 				}
 				else {
-					$mesForm = $_POST["mes"];
-					$banco = json_decode(file_get_contents("banco.json"));
-					$somaValores = 0;
-					$countBanco = count($banco);
-					echo  "<div class='row mx-auto col-lg-10'>";
-					echo  "<table class='table tableRegistros table-hover'><thead>";
-					echo  "  <tr>";
-					echo  "    <th>Valor</th>";
-					echo  "    <th>Data</th>";
-					echo  "  </tr></thead>";
-					$mesFormInicio = date_create($mesForm,timezone_open("America/Sao_Paulo"));
-					$mesFormFinal = date_create($mesForm,timezone_open("America/Sao_Paulo"));
-					date_add($mesFormFinal, date_interval_create_from_date_string('1 month'));
-					foreach($banco as $row) {
-						$row->data = date_create($row->data, timezone_open("America/Sao_Paulo"));
-						if (isset($count)){
-							$count = $count + 1;
-						}
-						else{
-							$count = 1;
-						}
-						if (($row->data >= $mesFormInicio) and ($row->data < $mesFormFinal)){
-							$checkNenhumRegistro = 2;
-							$checkTable = 1;
-							$row->data = date_format($row->data,"d/m/Y");
-							$valorFloat = floatval($row->valor);
-							$somaValores = $somaValores + $valorFloat;
-							if ($valorFloat < 0) {
-								echo "<tr class='table-danger'>";
-								echo "<td>" . $row->valor . "</td>";
-								echo "<td>" . "$row->data" . "</td>";
-								echo "</tr>";
-							}
-							else {
-								echo "<tr class='table-success'>";
-								echo "<td>" . $row->valor . "</td>";
-								echo "<td>" . "$row->data" . "</td>";
-								echo "</tr>";
-							}
-						}
-						else if (($count >= $countBanco) and (empty($checkNenhumRegistro))){
-							echo "<div class='nenhum_Registro alert alert-warning container-fluid'>Nenhum registro para o mês selecionado!</div>";
-							$checkNenhumRegistro = 1;
-							continue;
-						}
-					}
-					echo  "</table>";
-					if ($checkNenhumRegistro <> 1) {
-						echo "<div class='alert soma_Mes'> A soma dos valores desse mês é de R$ " . $somaValores . "</div>";
-					}
+					echo "<div class='alert alert-warning nenhum_Registro'>Nenhum registro para ser checado</div>";
 				}
     	?>
     </div>

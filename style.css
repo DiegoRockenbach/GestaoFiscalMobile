@@ -107,7 +107,7 @@ html, body {
     background: #ffecac;
     font-size: 25px;
     font-weight: bold;
-    margin-top: 1em;
+    margin-top: 2em;
 }
 
 @media (max-width: 600px) {

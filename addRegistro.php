@@ -16,18 +16,27 @@
     <?php
       $valorFORM = $_POST["valor"];
       $dataFORM = $_POST["data"];
-      $valdat = array(
-        "valor" => $valorFORM,
-        "data" => $dataFORM,
-      );
+      $id = "";
       if (file_exists("banco.json")) {
         $banco = json_decode(file_get_contents("banco.json"));
-        array_push($banco, $valdat);
+        $id = uniqid($id);
+        $valdatID = array(
+          "valor" => $valorFORM,
+          "data" => $dataFORM,
+          "id" => $id,
+        );
+        array_push($banco, $valdatID);
         file_put_contents("banco.json", json_encode($banco));
       }
       else {
         $banco = array();
-        array_push($banco, $valdat);
+        $id = uniqid($id);
+        $valdatID = array(
+          "valor" => $valorFORM,
+          "data" => $dataFORM,
+          "id" => $id,
+        );
+        array_push($banco, $valdatID);
         file_put_contents("banco.json", json_encode($banco));
       }
       echo "<div class='alert alert-success valor_Inserido'>Valor inserido!</div>";
@@ -41,6 +50,7 @@
   	  </container>
   	</section>
   </body>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
 </html>
 
 <?php
