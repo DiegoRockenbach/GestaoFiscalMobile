@@ -4,15 +4,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
     <title>Verificar Login</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
-    <link rel="icon" href="favicon.ico">
-    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="stylesheet" href="inc/style.css">
+    <link rel="icon" href="inc/img/favicon.ico">
   </head>
   <body class="fundo">
     <?php
       $userFORM = $_POST["user"];
       $senhaFORM = $_POST["senha"];
-      $verificaLogin = json_decode(file_get_contents("contaCERTA.txt"), true);
+      $verificaLogin = json_decode(file_get_contents("inc/contaCERTA.json"), true);
       if (($userFORM == $verificaLogin["user"]) and ($senhaFORM == $verificaLogin["senha"])) {
         session_start();
         $_SESSION['user'] = $userFORM;

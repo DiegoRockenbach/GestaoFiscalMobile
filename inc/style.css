@@ -1,0 +1,289 @@
+html, body {
+    height: 100%;
+}
+
+.fundo {
+    background-color: rgb(15, 15, 15);
+}
+
+.btn_Voltar {
+    display: block;
+    text-align: center;
+    width: 10em;
+    margin: auto;
+    margin-top: 6em;
+    margin-bottom: 2em;
+    font-size: 20px;
+    border: 3px solid rgb(132, 27, 230);
+    color: rgb(132, 27, 230);
+    background-color: rgb(15, 15, 15);
+    transition: all 0.3s ease-in-out;
+}
+
+.btn_Voltar:hover {
+    background-color: rgb(132, 27, 230);
+    transform:scale(1.2);
+    color: white;
+}
+
+@media (max-width: 700px) {
+    .btn_Voltar {
+        margin-top: 3em;
+    }
+}
+
+/*formLogin.php*/
+.formLogin {
+    display: block;
+    margin: auto;
+    width: 20em;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+}
+
+.formLogin input {
+    border: 0.1em solid whitesmoke;
+    color: white;
+    background-color: #212529;
+}
+
+.formLogin label {
+    padding-top: 2em;
+    width: 5em;
+}
+
+.formLogin .btn_Submit {
+    display: block;
+    text-align: center;
+    width: 10em;
+    margin: auto;
+    margin-top: 3em;
+    font-size: 20px;
+    border: 3px solid rgb(132, 27, 230);
+    color: rgb(132, 27, 230);
+    background-color: rgb(15, 15, 15);
+    transition: all 0.3s ease-in-out;
+}
+
+.box_Login {
+    padding-top: 12em;
+}
+
+/*login.php*/
+.login_Falha {
+    display: block;
+    margin: auto;
+    text-align: center;
+    font-size: 25px;
+    width: 20em;
+    margin-top: 10em;
+    font-weight: bold;
+    background-color: #f89ca4;
+}
+
+@media (max-width: 650px) {
+    .login_Falha {
+        margin-top: 6em;
+        margin-bottom: 2.5em;
+    }
+}
+
+/*Index.php*/
+.btn_Index {
+    display: block;
+    font-size: 1em;
+    text-decoration: none;
+    border: 3px solid rgb(132, 27, 230);
+    color: rgb(132, 27, 230);
+    background-color: rgb(15, 15, 15);
+    width: 15em;
+    padding-top: 3em;
+    padding-bottom: 3em;
+    margin: auto;
+    margin-top: 5em;
+    transition: all 0.3s ease-in-out;
+}
+
+.btn_Index:hover {
+    background-color: rgb(132, 27, 230);
+    transform:scale(1.2);
+    color: white;
+}
+
+@media (max-width: 750px) {
+    .box_Index {
+        padding-top: 3em;
+        margin-top: 2em;
+    }
+}
+
+@media (max-width: 650px) {
+    .box_Index {
+        padding-top: 1em;
+        margin-top: 1em;
+    }
+}
+
+/*formAddRegistro.php*/
+.formValdat {
+    display: block;
+    margin: auto;
+    width: 20em;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+}
+
+.formValdat label {
+    margin-bottom: 0.5em;
+    margin-top: 1em;
+}
+
+.formValdat input {
+    color: white;
+    background-color: #212529;
+}
+
+.formValdat .btn_Submit {
+    display: block;
+    text-align: center;
+    width: 10em;
+    margin: auto;
+    margin-top: 4em;
+    margin-bottom: -2em;
+    font-size: 20px;
+    border: 3px solid rgb(132, 27, 230);
+    color: rgb(132, 27, 230);
+    background-color: rgb(15, 15, 15);
+    transition: all 0.3s ease-in-out;
+}
+
+.btn_Submit:hover {
+    background-color: rgb(132, 27, 230);
+    transform:scale(1.2);
+    color: white;
+}
+
+.valor_Inserido {
+    display: block;
+    margin: auto;
+    text-align: center;
+    font-size: 25px;
+    width: 20em;
+    margin-top: 8em;
+    font-weight: bold;
+}
+
+@media (max-width: 500px) {
+    .valor_Inserido {
+        width: 12em;
+    }
+}
+
+/*addRegistro.php*/
+.btn_InserirMaisUm {
+    display: block;
+    text-align: center;
+    width: 15em;
+    margin: auto;
+    margin-top: 6em;
+    font-size: 20px;
+    border: 3px solid rgb(132, 27, 230);
+    color: rgb(132, 27, 230);
+    background-color: rgb(15, 15, 15);
+    transition: all 0.3s ease-in-out;
+}
+
+.btn_InserirMaisUm:hover {
+    background-color: rgb(132, 27, 230);
+    transform:scale(1.2);
+    color: white;
+}
+
+@media (max-width: 700px) {
+    .btn_InserirMaisUm {
+        margin-top: 3em;
+    }
+}
+
+/*checkRegistros.php*/
+.tableRegistros {
+    text-align: center;
+    margin-top: 2em;
+    background-color: #212529;
+    color: white;
+    border-color: #373b3e;
+    --bs-table-hover-color: white;
+}
+
+.tablelist td, th {
+    border: 1px solid rgb(71, 71, 71);
+}
+
+.table-danger {
+    --bs-table-color: white;
+    --bs-table-bg: rgb(185, 42, 42);
+    --bs-table-hover-bg: rgb(187, 62, 62);
+    --bs-table-hover-color: white;
+}
+
+.table-success {
+    --bs-table-color: white;
+    --bs-table-bg: rgb(35, 182, 66);
+    --bs-table-hover-bg: rgb(51, 182, 79);
+    --bs-table-hover-color: white;
+}
+
+.formMes {
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 1em;
+}
+
+.formMes label {
+    margin-bottom: 2em;
+}
+
+.formMes input {
+    color: white;
+    background-color: #212529;
+}
+
+@media (max-width: 700px) {
+    .formMes label {
+        margin-bottom: 0.5em;
+    }
+}
+
+.lixeiraIMG{
+    height: 33px;
+    width: 28px;
+}
+
+.soma_Mes {
+    display: block;
+    margin: auto;
+    text-align: center;
+    font-size: 25px;
+    width: 30em;
+    margin-top: 1em;
+    font-weight: bold;
+    color: white;
+}
+
+.nenhum_Registro {
+    text-align: center;
+    background: #ffecac;
+    font-size: 25px;
+    font-weight: bold;
+    margin-top: 2em;
+}
+
+@media (max-width: 600px) {
+    .nenhum_Registro {
+        font-size: 20px;
+    }
+}

@@ -9,8 +9,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
     <title>Página principal</title>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-  	<link rel="stylesheet" href="style.css">
-    <link rel="icon" href="favicon.ico">
+  	<link rel="stylesheet" href="inc/style.css">
+    <link rel="icon" href="inc/img/favicon.ico">
   </head>
   <body class='fundo'>
   	<section>
@@ -26,12 +26,19 @@
   	</section>
     <div class="row mx-auto">
     	<?php
-				if (file_exists("banco.json")) {
-					if (!$_POST) {
+				if (file_exists("inc/banco.json")) {
+					if ((!$_POST) and (!isset($_GET["dataGET"]))) {
 					}
 					else {
-						$mesForm = $_POST["mes"];
-						$banco = json_decode(file_get_contents("banco.json"));
+						if (isset($_GET["dataGET"])) {
+							$mesForm = $_GET["dataGET"];
+							$mesForm = date_create_from_format("d/m/Y", $mesForm, timezone_open("America/Sao_Paulo"));
+							$mesForm = date_format($mesForm, "Y-m");
+						}
+						if (isset($_POST["mes"])) {
+							$mesForm = $_POST["mes"];
+						}
+						$banco = json_decode(file_get_contents("inc/banco.json"));
 						$somaValores = 0;
 						$checkNenhumRegistro = 0;
 						$countBanco = count($banco);
@@ -55,7 +62,6 @@
 							}
 							if (($row->data >= $mesFormInicio) and ($row->data < $mesFormFinal)){
 								$checkNenhumRegistro = 2;
-								$checkTable = 1;
 								$row->data = date_format($row->data,"d/m/Y");
 								$valorFloat = floatval($row->valor);
 								$somaValores = $somaValores + $valorFloat;
@@ -63,21 +69,20 @@
 									echo "<tr class='table-danger'>";
 									echo "<td>" . $row->valor . "</td>";
 									echo "<td>" . $row->data . "</td>";
-									echo "<td><a href='deleteRegistro.php?id=$row->id'><img src='lixeira.png'></a></td>";
+									echo "<td><a href='deleteRegistro.php?id=$row->id&dataGET=$row->data'><img class='lixeiraIMG' src='inc/img/lixeira.png'></a></td>";
 									echo "</tr>";
 								}
 								else {
 									echo "<tr class='table-success'>";
 									echo "<td>" . $row->valor . "</td>";
 									echo "<td>" . $row->data . "</td>";
-									echo "<td><a href='deleteRegistro.php?id=$row->id'><img src='lixeira.png'></a></td>";
+									echo "<td><a href='deleteRegistro.php?id=$row->id&dataGET=$row->data'><img class='lixeiraIMG' src='inc/img/lixeira.png'></a></td>";
 									echo "</tr>";
 								}
 							}
 							else if (($count >= $countBanco) and ($checkNenhumRegistro == 0)){
-								echo "<div class='nenhum_Registro alert alert-warning container-fluid'>Nenhum registro para o mês selecionado!</div>";
+								echo "<div class='alert alert-warning nenhum_Registro container-fluid'>Nenhum registro para o mês selecionado!</div>";
 								$checkNenhumRegistro = 1;
-								continue;
 							}
 						}
 						echo  "</table>";

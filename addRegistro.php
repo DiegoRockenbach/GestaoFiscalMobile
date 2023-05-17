@@ -9,16 +9,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
     <title>Registro adicionado</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">    
-    <link rel="icon" href="favicon.ico">
+    <link rel="stylesheet" href="inc/style.css">    
+    <link rel="icon" href="inc/img/favicon.ico">
   </head>
   <body class="fundo">
     <?php
       $valorFORM = $_POST["valor"];
       $dataFORM = $_POST["data"];
       $id = "";
-      if (file_exists("banco.json")) {
-        $banco = json_decode(file_get_contents("banco.json"));
+      if (file_exists("inc/banco.json")) {
+        $banco = json_decode(file_get_contents("inc/banco.json"));
         $id = uniqid($id);
         $valdatID = array(
           "valor" => $valorFORM,
@@ -26,7 +26,7 @@
           "id" => $id,
         );
         array_push($banco, $valdatID);
-        file_put_contents("banco.json", json_encode($banco));
+        file_put_contents("inc/banco.json", json_encode($banco));
       }
       else {
         $banco = array();
@@ -37,7 +37,7 @@
           "id" => $id,
         );
         array_push($banco, $valdatID);
-        file_put_contents("banco.json", json_encode($banco));
+        file_put_contents("inc/banco.json", json_encode($banco));
       }
       echo "<div class='alert alert-success valor_Inserido'>Valor inserido!</div>";
     ?>
