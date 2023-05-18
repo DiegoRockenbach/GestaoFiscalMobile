@@ -15,10 +15,10 @@
   <body class="fundo">
     <section>
       <container>
-          <div class="row mx-auto box_Index">
+          <div class="row mx-auto">
             <a class="btn btn_Index" href="formAddRegistro.php">Adicionar Registro</a>
           </div>
-          <div class="row mx-auto box_Index">
+          <div class="row mx-auto">
             <a class="btn btn_Index" href="checkRegistros.php">Checar Registros</a>
           </div>
       </container>
