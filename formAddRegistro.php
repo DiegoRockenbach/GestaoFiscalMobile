@@ -11,16 +11,19 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <link rel="stylesheet" href="inc/style.css">    
     <link rel="icon" href="inc/img/favicon.ico">
+    <link rel="manifest" href="manifest.json">
   </head>
   <body class="fundo">
     <section>
   	  <container>
   	    <div class="row mx-auto">
-          <form class="formValdat" action="addRegistro.php" method="post">
+          <form class="form_AddRegistro" action="addRegistro.php" method="post">
             <label for="valor">Valor: </label> <br>
             <input type="number" id="valor" name="valor" step="any" required> <br>
             <label for="data">Data: </label> <br>
-            <input type="date" id="data" name="data" required>
+            <input type="date" id="data" name="data" required> <br>
+            <label for="desc">Descrição: </label> <br>
+            <input type="text" id="desc" name="desc" class="formDesc">
             <input class="btn btn_Submit" type="submit" name="submit" value="Enviar">
           </form>
   	    </div>

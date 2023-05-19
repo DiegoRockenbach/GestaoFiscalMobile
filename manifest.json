@@ -1,0 +1,16 @@
+{
+  "short_name": "Gestão Fiscal",
+  "name": "Projeto de gestão fiscal pessoal",
+  "icons": [
+    {
+      "src": "inc/img/favicon.ico",
+      "type": "image/ico",
+      "sizes": "16x16"
+    }
+  ],
+  "start_url": "/?index.php",
+  "background_color": "#841BE6",
+  "display": "standalone",
+  "scope": "/",
+  "theme_color": "#841BE6"
+}
