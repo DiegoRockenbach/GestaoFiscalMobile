@@ -111,9 +111,9 @@ html, body {
     color: white;
 }
 
-@media (max-width: 650px) {
+@media (max-width: 1400px) {
     .btn_Index {
-        margin-top: 10em;
+        margin-top: 8em;
     }
 }
 
@@ -267,6 +267,8 @@ html, body {
 }
 
 .nenhum_Registro {
+    display: block;
+    margin: auto;
     text-align: center;
     background: #ffecac;
     font-size: 25px;
@@ -274,7 +276,7 @@ html, body {
     margin-top: 2em;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 800px) {
     .nenhum_Registro {
         font-size: 20px;
     }

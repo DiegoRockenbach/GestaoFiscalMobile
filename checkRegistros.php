@@ -42,6 +42,11 @@
 						$somaValores = 0;
 						$checkNenhumRegistro = 0;
 						$countBanco = count($banco);
+						if ($countBanco <= 0) {
+							echo "<div class='row mx-auto col-lg-10'>";
+							echo "<div class='alert alert-warning nenhum_Registro'>Nenhum registro para ser checado</div>";
+							echo "</div>";
+						}
 						echo  "<div class='row mx-auto col-lg-10'>";
 						echo  "<table class='table tableRegistros table-hover'><thead>";
 						echo  "  <tr>";
