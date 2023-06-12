@@ -1,3 +1,15 @@
+<?php
+      $userFORM = $_POST["user"];
+      $senhaFORM = $_POST["senha"];
+      $verificaLogin = json_decode(file_get_contents("inc/contaCERTA.json"), true);
+      if (($userFORM == $verificaLogin["user"]) and ($senhaFORM == $verificaLogin["senha"])) {
+        session_start();
+        $_SESSION['user'] = $userFORM;
+        $_SESSION['senha'] = $senhaFORM;
+        header("location: index.php");
+        die;
+      }
+    ?>
 <html>
   <head>
     <meta charset="UTF-8">
@@ -9,28 +21,14 @@
     <link rel="manifest" href="manifest.json">
   </head>
   <body class="fundo">
-    <?php
-      $userFORM = $_POST["user"];
-      $senhaFORM = $_POST["senha"];
-      $verificaLogin = json_decode(file_get_contents("inc/contaCERTA.json"), true);
-      if (($userFORM == $verificaLogin["user"]) and ($senhaFORM == $verificaLogin["senha"])) {
-        session_start();
-        $_SESSION['user'] = $userFORM;
-        $_SESSION['senha'] = $senhaFORM;
-        header("location: index.php");
-        die;
-      }
-      else {
-        echo "<div class='row mx-auto alert alert-danger login_Falha'>Usuário/Senha errado inserido!</div>";
-      }
-    ?>
-    <section>
-  	  <container>
-  	    <div class="row mx-auto">
-			    <a class="btn btn_Voltar" href="formLogin.php">Voltar</a>
-  	    </div>
-  	  </container>
-  	</section>
+    <div class='row mx-auto alert alert-danger login_Falha'>Usuário/Senha errado inserido!</div>
+      <section>
+  	    <container>
+  	      <div class="row mx-auto">
+		  	    <a class="btn btn_Voltar" href="formLogin.php">Voltar</a>
+  	      </div>
+  	    </container>
+  	  </section>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
   </body>
 </html>

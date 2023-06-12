@@ -302,3 +302,12 @@ html, body {
         font-size: 20px;
     }
 }
+
+form_AddPendecia {
+    display: block;
+    margin: auto;
+    width: 20em;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+}

@@ -1,6 +1,5 @@
 <?php
-  session_start();
-  if(isset($_SESSION['user']) and isset($_SESSION['senha'])) {
+  include "inc/paginaRestrita.php";
 ?>
 
 <html>
@@ -19,32 +18,33 @@
       $dataFORM = $_POST["data"];
       $descFORM = $_POST["desc"];
       $id = "";
-      if (file_exists("inc/banco.json")) {
-        $banco = json_decode(file_get_contents("inc/banco.json"));
-        $id = uniqid($id);
-        $arrayFORM = array(
-          "valor" => $valorFORM,
-          "data" => $dataFORM,
-          "desc" => $descFORM,
-          "id" => $id,
-        );
-        array_push($banco, $arrayFORM);
-        file_put_contents("inc/banco.json", json_encode($banco));
+      include "inc\credis.php";
+      if ($dataFORM == "") {
+        $dataFORM = date_create($timezone = "America/Sao_Paulo");
+        $dataFORM = date_format($dataFORM, "Y-m-d");        
+      }
+      $dataRedis = date_create_from_format("Y-m-d", $dataFORM, timezone_open("America/Sao_Paulo"));
+      $dataRedis = date_format($dataRedis, "Y:m");
+      $rediskeyRegistros = "registros:$dataRedis";
+      $banco = $redis->get($rediskeyRegistros);
+      if ($banco) {
+        $banco = json_decode($banco);  
       }
       else {
         $banco = array();
-        $id = uniqid($id);
-        $arrayFORM = array(
-          "valor" => $valorFORM,
-          "data" => $dataFORM,
-          "desc" => $descFORM,
-          "id" => $id,
-        );
-        array_push($banco, $arrayFORM);
-        file_put_contents("inc/banco.json", json_encode($banco));
       }
-      echo "<div class='alert alert-success valor_Inserido'>Valor inserido!</div>";
+      $id = uniqid($id);
+      $arrayFORM = array(
+        "valor" => $valorFORM,
+        "data" => $dataFORM,
+        "desc" => $descFORM,
+        "id" => $id,
+      );
+      array_push($banco, $arrayFORM);
+      $banco = json_encode($banco);
+      $redis->set($rediskeyRegistros, $banco);
     ?>
+    <div class='alert alert-success valor_Inserido'>Registro inserido!</div>
     <section>
   	  <container>
         <div class="row mx-auto box_Inline">
@@ -56,11 +56,3 @@
   </body>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
 </html>
-
-<?php
-  }
-  else {
-    header("location: formLogin.php");
-    die;
-  }
-?>
