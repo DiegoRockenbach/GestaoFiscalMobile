@@ -1,6 +1,6 @@
 <?php
   include "inc/paginaRestrita.php";
-  include "inc\credis.php";
+  include "inc/credis.php";
 ?>
 
 <html>

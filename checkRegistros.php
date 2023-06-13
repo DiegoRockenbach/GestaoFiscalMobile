@@ -58,6 +58,7 @@
 					echo "<div class='alert alert-warning nenhum_Registro'>Nenhum registro para o mês selecionado!</div>"; 
 					echo "</div>";
 					echo "<div class='row mx-auto'>";
+					echo "<a class='btn btn_checkChaves' href='checkChavesRegistros.php'>Checar chaves registradas</a>";
 					echo "<a class='btn btn_Voltar' href='index.php'>Voltar</a>";
 					echo "</div>";
 					die;
@@ -71,6 +72,7 @@
 					echo "<div class='alert alert-warning nenhum_Registro'>Nenhum registro para o mês selecionado!</div>";
 					echo "</div>";
 					echo "<div class='row mx-auto'>";
+					echo "<a class='btn btn_checkChaves' href='checkChavesRegistros.php'>Checar chaves registradas</a>";
 					echo "<a class='btn btn_Voltar' href='index.php'>Voltar</a>";
 					echo "</div>";
 					die;

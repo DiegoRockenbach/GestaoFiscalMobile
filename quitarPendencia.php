@@ -58,5 +58,5 @@
 		}
 	}
 	
-	//header("location: checkPendencias.php?dataGET=$dataGET");
+	header("location: checkPendencias.php?dataGET=$dataGET");
 ?>

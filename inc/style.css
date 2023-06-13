@@ -427,7 +427,6 @@ html, body {
     width: 15em;
 }
 
-
 /*checkPendencias.php*/
 .quitarIMG{
     height: 33px;
@@ -461,7 +460,7 @@ html, body {
     }
 }
 
-/*checkChavesPendencias.php*/
+/*checkChavesPendencias.php & checkChavesRegistros.php*/
 .tableChaves {
     text-align: center;
     margin-top: 10em;

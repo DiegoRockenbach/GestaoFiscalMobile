@@ -16,8 +16,15 @@
   <body class='fundo'>
   	<div class="row mx-auto">
   		<?php
-        $chavesredisRegPen = $redis->keys("*");
-				if (empty($chavesredisRegPen)) {
+        $chavesPendencias = $redis->keys("pendencias:*");
+				foreach($chavesPendencias as $row) {
+					if (strlen($redis->get($row)) <= 5) {
+						$redis->del($row);
+						continue;
+					}
+				}
+				$chavesPendencias = $redis->keys("pendencias:*");
+				if (empty($chavesPendencias)) {
 					echo "<div class='row mx-auto col-lg-10'>";
 					echo "<div class='alert alert-warning nenhum_Registro'>Nenhuma chave redis encontrada!</div>";
 					echo "</div>";
@@ -26,26 +33,21 @@
 					echo "</div>";
 					die;
 				}
-        sort($chavesredisRegPen, SORT_REGULAR);
-        echo "<div class='row mx-auto col-lg-10'>";
+				rsort($chavesPendencias, SORT_REGULAR);
+				echo "<div class='row mx-auto col-lg-10'>";
 				echo "<table class='table tableChaves table-hover'>";
 				echo "<tr>";
-				echo "<th>Chaves Pendências</th>";
+				echo "<th>Chaves de Pendências</th>";
 				echo "</tr></thead>";
-				foreach($chavesredisRegPen as $row) {
-					$dataredis = ltrim($row, "pendencias:");
-					if ($row == $dataredis) {
-						continue;
-					}
-					else if (!empty($chavesPendencias)) {
-						$chavesPendencias = $chavesPendencias . $row;
-					}
-					else {
-						$chavesPendencias = $row;
-					}
-          echo "<tr data-href='checkPendencias.php?rediskeyGET=$row'>";
-          echo "<td>$dataredis</td>";
-          echo "</tr>";
+				foreach($chavesPendencias as $row) {
+					$row = str_replace(
+						"pendencias:",
+						"",
+						$row,
+					);
+					echo "<tr data-href='checkPendencias.php?rediskeyGET=pendencias:$row'>";
+					echo "<td>$row</td>";
+					echo "</tr>";
 				}
 				echo "</table>";
 			?>
@@ -69,6 +71,7 @@
         });
       });
     </script>
+		
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
   </body>
 </html>

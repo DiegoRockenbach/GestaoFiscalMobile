@@ -55,9 +55,10 @@
   		<?php
 				if (!$redis->exists($rediskeyPendencias)) {
 					echo "<div class='row mx-auto col-lg-10'>";
-					echo "<div class='alert alert-warning nenhum_Registro'>Nenhum registro para o mês selecionado!</div>";
+					echo "<div class='alert alert-warning nenhum_Registro'>Nenhuma pendência encontrada no mês selecionado!</div>";
 					echo "</div>";
 					echo "<div class='row mx-auto'>";
+					echo "<a class='btn btn_checkChaves' href='checkChavesPendencias.php'>Checar chaves registradas</a>";
 					echo "<a class='btn btn_Voltar' href='index.php'>Voltar</a>";
 					echo "</div>";
 					die;
@@ -68,9 +69,10 @@
 				$countBanco = count($banco);
 				if ($countBanco <= 0) {
 					echo "<div class='row mx-auto col-lg-10'>";
-					echo "<div class='alert alert-warning nenhum_Registro'>Nenhum registro para o mês selecionado!</div>";
+					echo "<div class='alert alert-warning nenhum_Registro'>Nenhuma pendência encontrada no mês selecionado!</div>";
 					echo "</div>";
 					echo "<div class='row mx-auto'>";
+					echo "<a class='btn btn_checkChaves' href='checkChavesPendencias.php'>Checar chaves registradas</a>";
 					echo "<a class='btn btn_Voltar' href='index.php'>Voltar</a>";
 					echo "</div>";
 					die;
