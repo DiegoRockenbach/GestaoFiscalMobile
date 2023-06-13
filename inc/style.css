@@ -12,11 +12,12 @@ html, body {
     width: 10em;
     margin: auto;
     margin-top: 6em;
-    margin-bottom: 2em;
     font-size: 20px;
     border: 3px solid rgb(132, 27, 230);
     color: rgb(132, 27, 230);
     background-color: rgb(15, 15, 15);
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
     transition: all 0.3s ease-in-out;
 }
 
@@ -90,30 +91,109 @@ html, body {
 }
 
 /*Index.php*/
-.btn_Index {
+.sectionIndex {
     display: block;
+    width: auto;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn_Index {
     font-size: 1em;
     text-decoration: none;
-    border: 3px solid rgb(132, 27, 230);
-    color: rgb(132, 27, 230);
     background-color: rgb(15, 15, 15);
-    width: 15em;
+    width: 17em;
     padding-top: 3em;
-    padding-bottom: 3em;
-    margin: auto;
-    margin-top: 13em;
+    padding-bottom: 3em;    
     transition: all 0.3s ease-in-out;
 }
 
-.btn_Index:hover {
-    background-color: rgb(132, 27, 230);
+.indexRegistro {
+    display: inline-block;
+    margin: auto;
+}
+
+.indexRegistro .btn_Index {
+    display: block;
+    margin: auto;
+    border: 3px solid rgb(192, 27, 230);
+    color: rgb(192, 27, 230);
+    margin-top: 10em;
+    margin-bottom: 10em;
+    margin-right: 10em;
+}
+
+.indexRegistro .btn_Index:hover {
+    background-color: rgb(192, 27, 230);
     transform:scale(1.2);
     color: white;
 }
 
-@media (max-width: 1400px) {
-    .btn_Index {
-        margin-top: 8em;
+.linhaSeparadora {
+    display: inline-block;
+    margin: auto;
+    border-left: 5px solid rgb(132, 27, 230);
+    height: 30em;
+    width: 2px;
+}
+
+.indexPendencia {
+    display: inline-block;
+    margin: auto;
+}
+
+.indexPendencia .btn_Index {
+    display: block;
+    margin: auto;
+    border: 3px solid rgb(72, 27, 230);
+    color: rgb(72, 27, 230);
+    margin-top: 10em;
+    margin-bottom: 10em;
+    margin-left: 10em;
+}
+
+.indexPendencia .btn_Index:hover {
+    background-color: rgb(72, 27, 230);
+    transform:scale(1.2);
+    color: white;
+}
+
+@media (max-width: 1100px) {
+    .linhaSeparadora {
+        visibility: hidden;
+    }
+
+    .indexRegistro .btn_Index {
+        margin-top: 10em;
+        margin-bottom: 10em;
+        margin-right: 3em;
+    }
+
+    .indexPendencia .btn_Index {
+        margin-top: 10em;
+        margin-bottom: 10em;
+        margin-left: 3em;
+    }
+}
+
+@media (max-width: 700px) {
+    .indexRegistro .btn_Index {
+        margin-top: 11em;
+        margin-bottom: 6em;
+        margin-right: 1.5em;
+        width: 13em;
+        padding-top: 2.5em;
+        padding-bottom: 2.5em;  
+    }
+
+    .indexPendencia .btn_Index {
+        margin-top: 11em;
+        margin-bottom: 6em;
+        margin-left: 1.5em;
+        width: 13em;
+        padding-top: 2.5em;
+        padding-bottom: 2.5em;  
     }
 }
 
@@ -148,6 +228,8 @@ html, body {
     border: 3px solid rgb(132, 27, 230);
     color: rgb(132, 27, 230);
     background-color: rgb(15, 15, 15);
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
     transition: all 0.3s ease-in-out;
 }
 
@@ -155,6 +237,10 @@ html, body {
     background-color: rgb(132, 27, 230);
     transform:scale(1.2);
     color: white;
+}
+
+.formDesc {
+    width: 18em;
 }
 
 .valor_Inserido {
@@ -174,14 +260,6 @@ html, body {
 }
 
 /*addRegistro.php*/
-.formDesc {
-    display: block;
-    margin: auto;
-    text-align: center;
-    width: 18em;
-    height: 2em;
-}
-
 .btn_InserirMaisUm {
     display: block;
     text-align: center;
@@ -192,6 +270,8 @@ html, body {
     border: 3px solid rgb(132, 27, 230);
     color: rgb(132, 27, 230);
     background-color: rgb(15, 15, 15);
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
     transition: all 0.3s ease-in-out;
 }
 
@@ -303,11 +383,103 @@ html, body {
     }
 }
 
-form_AddPendecia {
+/*formAddPendencia.php*/
+.form_AddPendencia {
     display: block;
     margin: auto;
     width: 20em;
     text-align: center;
     color: white;
     font-weight: bold;
+}
+
+.form_AddPendencia label {
+    margin-bottom: 0.5em;
+    margin-top: 1em;
+}
+
+.form_AddPendencia input {
+    color: white;
+    background-color: #212529;
+}
+
+.form_AddPendencia .btn_Submit {
+    display: block;
+    text-align: center;
+    width: 10em;
+    margin: auto;
+    margin-top: 4em;
+    margin-bottom: -2em;
+    font-size: 20px;
+    border: 3px solid rgb(132, 27, 230);
+    color: rgb(132, 27, 230);
+    background-color: rgb(15, 15, 15);
+    transition: all 0.3s ease-in-out;
+}
+
+.btn_Submit:hover {
+    background-color: rgb(132, 27, 230);
+    transform:scale(1.2);
+    color: white;
+}
+
+.formCredDev {
+    width: 15em;
+}
+
+
+/*checkPendencias.php*/
+.quitarIMG{
+    height: 33px;
+    width: 28px;
+}
+
+.btn_checkChaves {
+    display: block;
+    text-align: center;
+    width: 15em;
+    margin: auto;
+    margin-top: 6em;
+    font-size: 20px;
+    border: 3px solid rgb(132, 27, 230);
+    color: rgb(132, 27, 230);
+    background-color: rgb(15, 15, 15);
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    transition: all 0.3s ease-in-out;
+}
+
+.btn_checkChaves:hover {
+    background-color: rgb(132, 27, 230);
+    transform:scale(1.2);
+    color: white;
+}
+
+@media (max-width: 700px) {
+    .btn_checkChaves {
+        margin-top: 3em;
+    }
+}
+
+/*checkChavesPendencias.php*/
+.tableChaves {
+    text-align: center;
+    margin-top: 10em;
+    background-color: #212529;
+    color: white;
+    border-color: #373b3e;
+    --bs-table-hover-color: white;
+}
+
+.tableChaves td {
+    padding-top: 1.5em;
+    padding-bottom: 1.5em;
+}
+
+.tableChaves tr {
+    cursor: pointer;
+}
+
+.tableChaves tr th {
+    cursor: auto;
 }
