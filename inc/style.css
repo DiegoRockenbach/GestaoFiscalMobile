@@ -333,6 +333,7 @@ html, body {
 }
 
 .tablelist td, th {
+    vertical-align: text-top;
     border: 1px solid rgb(71, 71, 71);
 }
 
@@ -488,7 +489,6 @@ html, body {
     width: 15em;
     margin: auto;
     margin-top: 6em;
-    margin-bottom: -1.5em;
     font-size: 20px;
     border: 3px solid rgb(132, 27, 230);
     color: rgb(132, 27, 230);
@@ -507,6 +507,12 @@ html, body {
 @media (max-width: 700px) {
     .btn_checkChaves {
         margin-top: 3em;
+    }
+}
+
+@media (max-width: 523px) {
+    .btn_checkChaves {
+        margin-bottom: -2em;
     }
 }
 
