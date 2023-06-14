@@ -88,7 +88,7 @@
 				echo "<div class='row mx-auto col-lg-10'>";
 				echo "<table class='table tableRegistros table-hover'><thead>";
 				echo "<tr>";
-				echo "<th>Credor/devedor e valor</th>";
+				echo "<th>Envolvido e valor</th>";
 				echo "<th>Data</th>";
 				echo "<th>Descrição</th>";
 				echo "<th></th>"; //<th> da lixeira
