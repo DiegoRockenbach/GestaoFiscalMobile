@@ -135,8 +135,7 @@ html, body {
     margin: auto;
     background-color: white;
     background-color: rgb(192,27,230);
-    background: linear-gradient(0deg, rgba(72,27,230,1) 0%, rgba(132,27,230,1) 50%, rgba(192,27,230,1) 100%);
-    /* border-left: 5px solid rgb(132, 27, 230); */
+    background: linear-gradient(0deg, rgba(72,27,230,1) 0%, rgba(132,27,230,1) 50%, rgba(192,27,230,1) 100%); 
     height: 30em;
     width: 5px;
 }
