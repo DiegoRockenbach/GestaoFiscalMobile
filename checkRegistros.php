@@ -65,6 +65,14 @@
 				}
 				$banco = $redis->get($rediskeyRegistros);
 				$banco = json_decode($banco);
+				usort($banco, function($a, $b) {
+					$dataA = date_create_from_format("Y-m-d", $a->data);
+					$dataB = date_create_from_format("Y-m-d", $b->data);
+					if ($dataA == $dataB) {
+						return 0;
+					}
+					return $dataA > $dataB ? -1 : 1;
+				});
 				$somaValores = 0;
 				$countBanco = count($banco);
 				if ($countBanco <= 0) {
@@ -85,10 +93,6 @@
 				echo "<th>Descrição</th>";
 				echo "<th></th>"; //<th> da lixeira
 				echo "</tr></thead>";
-				$mesFORMInicio = date_format($mesFORM, "Y-m-1");
-				$mesFORMInicio = date_create_from_format("Y-m-d", $mesFORMInicio, timezone_open("America/Sao_Paulo"));
-				$mesFORMFinal = clone $mesFORMInicio;
-				date_add($mesFORMFinal, date_interval_create_from_date_string('1 month'));
 				foreach($banco as $row) {
 					if (isset($count)){
 						$count = $count + 1;
@@ -97,33 +101,31 @@
 						$count = 1;
 					}
 					$row->data = date_create_from_format("Y-m-d", $row->data, timezone_open("America/Sao_Paulo"));
-					if (($row->data >= $mesFORMInicio) and ($row->data < $mesFORMFinal)){
-						$row->data = date_format($row->data,"d/m/Y");
-						$valorFloat = floatval($row->valor);
-						$somaValores = $somaValores + $valorFloat;
-						if ($valorFloat < 0) {
-							echo "<tr class='table-danger'>";
-							echo "<td>R$ " . number_format($row->valor, 2, ",", "") . "</td>";
-							echo "<td>" . $row->data . "</td>";
-							echo "<td>" . $row->desc . "</td>";
-							echo "<td><a href='deleteRegistro.php?idGET=$row->id&dataGET=$row->data'><img class='lixeiraIMG' src='inc/img/lixeira.png'></a></td>";
-							echo "</tr>";
-						}
-						else {
-							echo "<tr class='table-success'>";
-							echo "<td>R$ " . number_format($row->valor, 2, ",", "") . "</td>";
-							echo "<td>" . $row->data . "</td>";
-							echo "<td>" . $row->desc . "</td>";
-							echo "<td><a href='deleteRegistro.php?idGET=$row->id&dataGET=$row->data'><img class='lixeiraIMG' src='inc/img/lixeira.png'></a></td>";
-							echo "</tr>";
-						}
-					}
-					if (!isset($valorTotal)) {
-						$valorTotal = $row->valor;
+					$row->data = date_format($row->data,"d/m/Y");
+					$valorFloat = floatval($row->valor);
+					$somaValores = $somaValores + $valorFloat;
+					if ($valorFloat < 0) {
+						echo "<tr class='table-danger'>";
+						echo "<td>R$ " . number_format($row->valor, 2, ",", "") . "</td>";
+						echo "<td>" . $row->data . "</td>";
+						echo "<td>" . $row->desc . "</td>";
+						echo "<td><a href='deleteRegistro.php?idGET=$row->id&dataGET=$row->data'><img class='lixeiraIMG' src='inc/img/lixeira.png'></a></td>";
+						echo "</tr>";
 					}
 					else {
-						$valorTotal = $valorTotal + $row->valor;
+						echo "<tr class='table-success'>";
+						echo "<td>R$ " . number_format($row->valor, 2, ",", "") . "</td>";
+						echo "<td>" . $row->data . "</td>";
+						echo "<td>" . $row->desc . "</td>";
+						echo "<td><a href='deleteRegistro.php?idGET=$row->id&dataGET=$row->data'><img class='lixeiraIMG' src='inc/img/lixeira.png'></a></td>";
+						echo "</tr>";
 					}
+				}
+				if (empty($valorTotal)) {
+					$valorTotal = $row->valor;
+				}
+				else {
+					$valorTotal = $valorTotal + $row->valor;
 				}
 				echo "</table>";
 				echo "<div class='alert soma_Mes'>A soma dos valores <strong>desse mês</strong> é de R$ " . number_format($somaValores, 2, ",", "") . "</div>";

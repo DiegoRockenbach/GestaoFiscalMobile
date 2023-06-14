@@ -65,6 +65,14 @@
 				}
 				$banco = $redis->get($rediskeyPendencias);
 				$banco = json_decode($banco);
+				usort($banco, function($a, $b) {
+					$dataA = date_create_from_format("Y-m-d", $a->data);
+					$dataB = date_create_from_format("Y-m-d", $b->data);
+					if ($dataA == $dataB) {
+						return 0;
+					}
+					return $dataA > $dataB ? -1 : 1;
+				});
 				$somaValores = 0;
 				$countBanco = count($banco);
 				if ($countBanco <= 0) {
@@ -86,47 +94,41 @@
 				echo "<th></th>"; //<th> da lixeira
 				echo "<th></th>"; //<th> do quitado
 				echo "</tr></thead>";
-				$mesFORMInicio = date_format($mesFORM, "Y-m-1");
-				$mesFORMInicio = date_create_from_format("Y-m-d", $mesFORMInicio, timezone_open("America/Sao_Paulo"));
-				$mesFORMFinal = clone $mesFORMInicio;
-				date_add($mesFORMFinal, date_interval_create_from_date_string('1 month'));
 				foreach($banco as $row) {
-					$row->data = date_create($row->data, timezone_open("America/Sao_Paulo"));
 					if (isset($count)){
 						$count = $count + 1;
 					}
 					else{
 						$count = 1;
 					}
-					if (($row->data >= $mesFORMInicio) and ($row->data < $mesFORMFinal)){
-						$row->data = date_format($row->data,"d/m/Y");
-						$valorFloat = floatval($row->valor);
-						$somaValores = $somaValores + $valorFloat;
-						if ($valorFloat < 0) {
-							echo "<tr class='table-danger'>";
-							echo "<td>Eu estou devendo R$ " . number_format($row->valor*-1, 2, ",", "") . " para <strong>$row->creddev</strong></td>";
-							echo "<td>" . $row->data . "</td>";
-							echo "<td>" . $row->desc . "</td>";
-							echo "<td><a href='deletePendencia.php?idGET=$row->id&dataGET=$row->data'><img class='lixeiraIMG' src='inc/img/lixeira.png'></a></td>";
-							echo "<td><a href='quitarPendencia.php?idGET=$row->id&dataGET=$row->data&valorGET=$row->valor&descGET=$row->desc&creddevGET=$row->creddev'><img class='quitarIMG' src='inc/img/quitar.png'></a></td>";
-							echo "</tr>";
-						}
-						else {
-							echo "<tr class='table-success'>";
-							echo "<td><strong>$row->creddev</strong> está me devendo <strong>R$ " . number_format($row->valor, 2, ",", "") . "</strong></td>";
-							echo "<td>" . $row->data . "</td>";
-							echo "<td>" . $row->desc . "</td>";
-							echo "<td><a href='deletePendencia.php?idGET=$row->id&dataGET=$row->data'><img class='lixeiraIMG' src='inc/img/lixeira.png'></a></td>";
-							echo "<td><a href='quitarPendencia.php?idGET=$row->id&dataGET=$row->data&valorGET=$row->valor&descGET=$row->desc&creddevGET=$row->creddev'><img class='quitarIMG' src='inc/img/quitar.png'></a></td>";
-							echo "</tr>";
-						}
-					}
-					if (!isset($valorTotal)) {
-						$valorTotal = $row->valor;
+					$row->data = date_create_from_format("Y-m-d", $row->data, timezone_open("America/Sao_Paulo"));
+					$row->data = date_format($row->data,"d/m/Y");
+					$valorFloat = floatval($row->valor);
+					$somaValores = $somaValores + $valorFloat;
+					if ($valorFloat < 0) {
+						echo "<tr class='table-danger'>";
+						echo "<td>Eu estou devendo R$ " . number_format($row->valor*-1, 2, ",", "") . " para <strong>$row->creddev</strong></td>";
+						echo "<td>" . $row->data . "</td>";
+						echo "<td>" . $row->desc . "</td>";
+						echo "<td><a href='deletePendencia.php?idGET=$row->id&dataGET=$row->data'><img class='lixeiraIMG' src='inc/img/lixeira.png'></a></td>";
+						echo "<td><a href='quitarPendencia.php?idGET=$row->id&dataGET=$row->data&valorGET=$row->valor&descGET=$row->desc&creddevGET=$row->creddev'><img class='quitarIMG' src='inc/img/quitar.png'></a></td>";
+						echo "</tr>";
 					}
 					else {
-						$valorTotal = $valorTotal + $row->valor;
+						echo "<tr class='table-success'>";
+						echo "<td><strong>$row->creddev</strong> está me devendo <strong>R$ " . number_format($row->valor, 2, ",", "") . "</strong></td>";
+						echo "<td>" . $row->data . "</td>";
+						echo "<td>" . $row->desc . "</td>";
+						echo "<td><a href='deletePendencia.php?idGET=$row->id&dataGET=$row->data'><img class='lixeiraIMG' src='inc/img/lixeira.png'></a></td>";
+						echo "<td><a href='quitarPendencia.php?idGET=$row->id&dataGET=$row->data&valorGET=$row->valor&descGET=$row->desc&creddevGET=$row->creddev'><img class='quitarIMG' src='inc/img/quitar.png'></a></td>";
+						echo "</tr>";
 					}
+				}
+				if (empty($valorTotal)) {
+					$valorTotal = $row->valor;
+				}
+				else {
+					$valorTotal = $valorTotal + $row->valor;
 				}
 				echo "</table>";
 			?>

@@ -22,7 +22,7 @@
             <label for="data">Data: </label> <br>
             <input type="date" id="data" name="data"> <br>
             <label for="creddev">Credor/Devedor: </label> <br>
-            <input type="text" id="creddev" name="creddev" class="formCredDev"> <br>
+            <input type="text" id="creddev" name="creddev" class="formCredDev" required> <br>
             <label for="desc">Descrição: </label> <br>
             <input type="text" id="desc" name="desc" class="formDesc">
             <input class="btn btn_Submit" type="submit" name="submit" value="Enviar">
