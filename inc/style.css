@@ -190,37 +190,37 @@ html, body {
     
     .indexRegistro .btn_RegCima {
         margin: auto;
-        margin-top: 7em;
-        margin-bottom: 1.5em;
+        margin-top: 2em;
+        margin-bottom: 1em;
         width: 13em;
-        padding-top: 2.5em;
-        padding-bottom: 2.5em; 
+        padding-top: 2em;
+        padding-bottom: 2em; 
     }
 
     .indexRegistro .btn_RegBaixo {
         margin: auto;
-        margin-top: 1.5em;
-        margin-bottom: 4em;
+        margin-top: 1em;
+        margin-bottom: 2em;
         width: 13em;
-        padding-top: 2.5em;
-        padding-bottom: 2.5em; 
+        padding-top: 2em;
+        padding-bottom: 2em; 
     }
 
     .indexPendencia .btn_PenCima {
         margin: auto;
-        margin-top: 4em;
-        margin-bottom: 1.5em;
+        margin-top: 3em;
+        margin-bottom: 1em;
         width: 13em;
-        padding-top: 2.5em;
-        padding-bottom: 2.5em; 
+        padding-top: 2em;
+        padding-bottom: 2em; 
     }
 
     .indexPendencia .btn_PenBaixo {
         margin: auto;
-        margin-top: 1.5em;
+        margin-top: 1em;
         width: 13em;
-        padding-top: 2.5em;
-        padding-bottom: 2.5em; 
+        padding-top: 2em;
+        padding-bottom: 2em; 
     }
 
     .indexRegistro {
