@@ -1,0 +1,23 @@
+services:
+  redis:
+    image: redis:alpine
+    container_name: redis-container
+    command: "redis-server --save 60 1 --loglevel warning"
+    volumes:
+      - redis-data:/data
+  site:
+    image: site
+    build: ./
+    container_name: site-container
+    environment:
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      SITE_USER: admin
+      SITE_PASS: admin
+    ports:
+      - "8080:80"
+    volumes:
+      - ./:/var/www/html
+
+volumes:
+  redis-data:

@@ -2,9 +2,10 @@
 
 require 'Credis/Client.php';
 
-$clienteCredis = json_decode(file_get_contents("inc/clienteCredis.json"), true);
+$redisHOST = getenv("REDIS_HOST");
+$redisPORT = getenv("REDIS_PORT");
 
-$redis = new Credis_Client($clienteCredis["param1"], $clienteCredis["param2"], $clienteCredis["param3"], $clienteCredis["param4"], $clienteCredis["param5"], $clienteCredis["param6"]);
+$redis = new Credis_Client($redisHOST, $redisPORT);
 
 
 /* REDIS TEST

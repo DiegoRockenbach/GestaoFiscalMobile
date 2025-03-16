@@ -1,8 +1,9 @@
 <?php
+      $siteUSER = getenv("SITE_USER");
+      $sitePASS = getenv("SITE_PASS");
       $userFORM = $_POST["user"];
       $senhaFORM = $_POST["senha"];
-      $verificaLogin = json_decode(file_get_contents("inc/contaCERTA.json"), true);
-      if (($userFORM == $verificaLogin["user"]) and ($senhaFORM == $verificaLogin["senha"])) {
+      if (($userFORM == $siteUSER) and ($senhaFORM == $sitePASS)) {
         session_start();
         $_SESSION['user'] = $userFORM;
         $_SESSION['senha'] = $senhaFORM;
