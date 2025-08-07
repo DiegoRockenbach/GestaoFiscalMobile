@@ -1,0 +1,25 @@
+services:
+
+  site:
+    image: ghcr.io/diegorockenbach/gestaofiscalmobile
+    container_name: diego_gestaofiscal_site
+    environment:
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      SITE_USER: ${SITE_USER}
+      SITE_PASS: ${SITE_PASS}
+    ports:
+      - "8021:80"
+    restart: always
+    labels:
+      tsdproxy.enable: true
+      tsdproxy.name: gestaofiscalmobile
+      tsdproxy.funnel: true
+
+  redis:
+    image: redis:alpine
+    container_name: diego_gestaofiscal_redis
+    command: "redis-server --save 60 1 --loglevel warning"
+    volumes:
+      - /mnt/user/diego-gestaofiscal/redis:/data
+    restart: always
