@@ -1,0 +1,24 @@
+name: Docker Image CI
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+  
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Build the Docker image
+      run: docker build . -t diegorockenbach/gestaofiscalmobile:latest
+    - name: Push image to Docker Hub
+      run: 
+        docker login -u diegorockenbach -p ${{ secrets.DOCKER_HUB_PASSWORD_TOKEN }}
+        docker push diegorockenbach/gestaofiscalmobile:latest
