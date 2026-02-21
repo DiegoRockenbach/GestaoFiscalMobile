@@ -18,6 +18,6 @@ jobs:
     - name: Build the Docker image
       run: docker build . -t diegorockenbach/gestaofiscalmobile:latest
     - name: Push image to Docker Hub
-      run: 
-        docker login -u diegorockenbach -p ${{ secrets.DOCKER_HUB_PASSWORD_TOKEN }}
+      run: |
+        echo "${{ secrets.DOCKER_HUB_PASSWORD_TOKEN }}" | docker login -u diegorockenbach --password-stdin
         docker push diegorockenbach/gestaofiscalmobile:latest
