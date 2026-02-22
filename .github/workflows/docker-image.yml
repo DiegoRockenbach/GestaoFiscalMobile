@@ -5,6 +5,7 @@ on:
     branches: [ "master" ]
   pull_request:
     branches: [ "master" ]
+  workflow_dispatch:
   
 
 jobs:
@@ -24,6 +25,6 @@ jobs:
 
     - name: Build the Docker image
       run: docker build . -t ghcr.io/diegorockenbach/gestaofiscalmobile:latest
-      
+
     - name: Push image to GitHub Container Registry
       run: docker push ghcr.io/diegorockenbach/gestaofiscalmobile:latest
