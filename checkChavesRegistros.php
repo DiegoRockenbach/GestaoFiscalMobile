@@ -142,7 +142,7 @@
 		
 
 		
-  	<div class="row mx-auto">
+  	<div class="row mx-auto" id="resultados">
   		<?php
 			if ($buscaAtiva) {
 				// Exibir resultados da busca
@@ -236,38 +236,75 @@
   	</section>
 
     <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        const rows=document.querySelectorAll("tr[data-href]");
-        rows.forEach(row => {
-          row.addEventListener("click", () => {
-            window.location.href = row.dataset.href;
-          });
-        });
+      // Delegado no document para continuar funcionando depois que os resultados são trocados
+      document.addEventListener("click", (e) => {
+        const row = e.target.closest("tr[data-href]");
+        if (row) {
+          window.location.href = row.dataset.href;
+        }
       });
-			
+
 			const modal = document.getElementById('filterModal');
 			const filterBtn = document.getElementById('filterBtn');
 			const searchInput = document.getElementById('searchInput');
 			const mainSearchForm = document.getElementById('mainSearchForm');
-			
+
 			let searchTimeout;
-			let lastSearchValue = searchInput.value;
-			
+			let searchController;
+			let lastSearchValue = searchInput.value.trim();
+
 			if (searchInput.value.trim().length > 0) {
 				searchInput.focus();
 				const length = searchInput.value.length;
 				searchInput.setSelectionRange(length, length);
 			}
-			
+
+			// Busca em segundo plano e troca só a área de resultados, sem recarregar a página,
+			// para não interromper o que o usuário está digitando.
+			async function atualizarResultados() {
+				if (searchController) {
+					searchController.abort(); // descarta a busca anterior que ainda não respondeu
+				}
+				searchController = new AbortController();
+				try {
+					const resposta = await fetch(window.location.pathname, {
+						method: 'POST',
+						body: new FormData(mainSearchForm),
+						signal: searchController.signal,
+					});
+					const pagina = new DOMParser().parseFromString(await resposta.text(), 'text/html');
+					const novosResultados = pagina.getElementById('resultados');
+					if (!novosResultados) {
+						// Ex.: sessão expirou e a resposta foi a tela de login
+						mainSearchForm.submit();
+						return;
+					}
+					document.getElementById('resultados').innerHTML = novosResultados.innerHTML;
+				} catch (erro) {
+					if (erro.name !== 'AbortError') {
+						mainSearchForm.submit();
+					}
+				}
+			}
+
 			searchInput.addEventListener('input', () => {
 				clearTimeout(searchTimeout);
 				searchTimeout = setTimeout(() => {
 					const currentValue = searchInput.value.trim();
 					if (currentValue.length > 0 || (lastSearchValue.length > 0 && currentValue.length === 0)) {
-						mainSearchForm.submit();
+						atualizarResultados();
 					}
 					lastSearchValue = currentValue;
 				}, 500);
+			});
+
+			// Enter no campo de busca ou "Pesquisar" nos filtros também atualizam sem recarregar
+			mainSearchForm.addEventListener('submit', (e) => {
+				e.preventDefault();
+				clearTimeout(searchTimeout);
+				lastSearchValue = searchInput.value.trim();
+				modal.style.display = 'none';
+				atualizarResultados();
 			});
 			
 			filterBtn.addEventListener('click', () => {
